@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #101113;
+  --paper: #f2f1ec;
+  --paper-dim: #e7e5dc;
+  --line: #d3d0c5;
+  --signal: #39ff6a;
+  --signal-ink: #146b30;
+  --alert: #ff4d3d;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-line: var(--line);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-alert: var(--alert);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-kr: var(--font-pretendard);
+}
+
+html {
+  background: var(--ink);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, sans-serif;
+  word-break: keep-all;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--ink);
+}
