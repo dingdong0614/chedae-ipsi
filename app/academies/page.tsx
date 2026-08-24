@@ -16,6 +16,9 @@ export default function AcademiesPage() {
       <p className="mt-3 max-w-xl text-ink/70">
         지역을 선택해 체대입시 학원을 찾아보세요. 준비 중인 종목이 맞는지 확인 후 바로 연락할 수 있습니다.
       </p>
+      <p className="mt-2 max-w-xl font-mono text-[11px] text-ink/40">
+        온라인에 공개된 정보를 조사해 정리한 목록입니다. 학원이 직접 등록한 정보가 아니므로 상담 전 전화로 최신 정보를 확인해주세요.
+      </p>
 
       <div className="mt-10">
         <AcademyDirectory academies={academies} regions={regions} />

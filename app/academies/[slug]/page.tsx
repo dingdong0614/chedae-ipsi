@@ -35,10 +35,6 @@ export default async function AcademyDetailPage(props: PageProps<"/academies/[sl
           <p className="mt-1 font-bold">{academy.address}</p>
         </div>
         <div className="bg-paper p-6">
-          <p className="font-mono text-xs text-ink/40">개원</p>
-          <p className="mt-1 font-bold">{academy.founded}년</p>
-        </div>
-        <div className="bg-paper p-6 sm:col-span-2">
           <p className="font-mono text-xs text-ink/40">준비 종목</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {academy.subjects.map((s) => (
@@ -49,6 +45,10 @@ export default async function AcademyDetailPage(props: PageProps<"/academies/[sl
           </div>
         </div>
       </div>
+
+      <p className="mt-6 font-mono text-[11px] text-ink/40">
+        온라인에 공개된 정보를 조사해 정리했으며, 학원이 직접 제출한 정보가 아닙니다. 상담 전 전화로 최신 정보를 확인해주세요.
+      </p>
 
       <div className="mt-10 flex flex-wrap gap-3">
         <a
