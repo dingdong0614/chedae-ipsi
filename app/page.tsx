@@ -3,13 +3,13 @@ import { infoCategories, infoArticles } from "@/data/info";
 import { academies } from "@/data/academies";
 import AcademyCard from "@/components/AcademyCard";
 
-const STATS = [
-  { value: "4", unit: "카테고리", label: "정리된 정보 영역" },
-  { value: "6", unit: "권역", label: "학원 검색 범위" },
-  { value: "0원", unit: "", label: "학생·학부모 이용료" },
-];
-
 export default function Home() {
+  const stats = [
+    { value: String(infoArticles.length), unit: "개 문서", label: "정리된 정보 영역" },
+    { value: String(academies.length), unit: "곳", label: "등록된 학원" },
+    { value: "0원", unit: "", label: "학생·학부모 이용료" },
+  ];
+
   return (
     <>
       {/* HERO */}
@@ -43,7 +43,7 @@ export default function Home() {
 
         <div className="border-t border-paper/10">
           <div className="mx-auto grid max-w-6xl grid-cols-3 divide-x divide-paper/10 px-5 sm:px-8">
-            {STATS.map((s) => (
+            {stats.map((s) => (
               <div key={s.label} className="py-8">
                 <p className="font-mono text-3xl font-bold text-signal sm:text-4xl">
                   {s.value}
