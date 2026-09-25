@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { infoCategories, infoArticles } from "@/data/info";
 import SampleBadge from "@/components/SampleBadge";
+import PageHead from "@/components/PageHead";
+import { IconChevron } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "정보실 | 체대입시",
@@ -10,44 +12,60 @@ export const metadata: Metadata = {
 
 export default function InfoPage() {
   return (
-    <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-      <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink/40">Information</p>
-      <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">정보실</h1>
-      <p className="mt-3 max-w-xl text-ink/70">
-        온라인에 흩어진 체대입시 정보를 종목·대학·일정·용어 단위로 정리했습니다. 문서마다 마지막 업데이트 날짜를 표시합니다.
-      </p>
+    <>
+      <PageHead title="정보실" photo="race" position="50% 50%">
+        종목 규정, 전형 이름, 일정, 커뮤니티에서 도는 이야기까지. 문서마다 마지막으로 고친 날짜를 적어 뒀어요.
+      </PageHead>
 
-      <div className="mt-14 space-y-16">
+      {/* 카테고리 가로 탭 (스크롤 시 상단 고정) */}
+      <nav aria-label="정보실 분류" className="sticky top-14 z-30 border-b border-line bg-page/95 md:top-16">
+        <div className="chip-row mx-auto flex max-w-6xl gap-5 overflow-x-auto px-4 sm:px-8">
+          {infoCategories.map((c) => (
+            <a
+              key={c.slug}
+              href={`#${c.slug}`}
+              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 border-b-2 border-transparent px-1 text-sm font-semibold text-body hover:border-signal hover:text-hi"
+            >
+              {c.title}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <div className="mx-auto max-w-6xl space-y-14 px-4 py-10 sm:px-8 md:py-14">
         {infoCategories.map((cat) => {
           const articles = infoArticles.filter((a) => a.categorySlug === cat.slug);
           return (
-            <section key={cat.slug} id={cat.slug} className="scroll-mt-24">
-              <div className="flex items-baseline gap-3 border-b border-line pb-4">
-                <span className="font-mono text-sm text-signal-ink">{cat.index}</span>
-                <h2 className="text-xl font-black">{cat.title}</h2>
+            <section key={cat.slug} id={cat.slug} aria-labelledby={`h-${cat.slug}`} className="scroll-mt-36 md:grid md:grid-cols-[280px_1fr] md:gap-10">
+              <div className="md:pt-2">
+                <h2 id={`h-${cat.slug}`} className="text-xl font-bold">
+                  {cat.title}
+                </h2>
+                <p className="mt-1.5 text-sm text-lo">{cat.description}</p>
               </div>
-              <p className="mt-3 text-sm text-ink/60">{cat.description}</p>
 
               {articles.length === 0 ? (
-                <p className="mt-6 font-mono text-xs text-ink/40">등록된 문서가 아직 없습니다.</p>
+                <div className="mt-5 rounded-[var(--radius)] border border-dashed border-line-strong p-6 md:mt-0">
+                  <p className="font-semibold text-hi">이 분류는 아직 정리 중이에요</p>
+                  <p className="mt-1 text-sm text-lo">먼저 다른 분류를 둘러보거나, 궁금한 주제를 알려주세요.</p>
+                  <Link href="/contact" className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-signal">
+                    주제 요청하기
+                  </Link>
+                </div>
               ) : (
-                <ul className="mt-6 divide-y divide-line border-y border-line">
+                <ul className="mt-5 divide-y divide-line border-y border-line md:mt-0">
                   {articles.map((a) => (
                     <li key={a.slug}>
-                      <Link
-                        href={`/info/${a.slug}`}
-                        className="flex flex-col gap-2 py-5 transition hover:bg-paper-dim sm:flex-row sm:items-center sm:justify-between"
-                      >
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-bold">{a.title}</h3>
+                      <Link href={`/info/${a.slug}`} className="group flex items-center gap-4 px-4 py-4 transition-colors hover:bg-raised sm:px-5">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="text-[16px] font-bold leading-snug">{a.title}</h3>
                             {a.sample && <SampleBadge />}
                           </div>
-                          <p className="mt-1 text-sm text-ink/60">{a.summary}</p>
+                          <p className="mt-1 line-clamp-2 text-sm text-lo">{a.summary}</p>
+                          <p className="num mt-2 text-xs text-lo">{a.updatedAt.replaceAll("-", ".")} 고침</p>
                         </div>
-                        <span className="whitespace-nowrap font-mono text-xs text-ink/40">
-                          UPDATED {a.updatedAt}
-                        </span>
+                        <IconChevron className="h-5 w-5 shrink-0 text-lo transition-colors group-hover:text-signal" />
                       </Link>
                     </li>
                   ))}
@@ -57,6 +75,6 @@ export default function InfoPage() {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }

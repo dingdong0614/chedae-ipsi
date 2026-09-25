@@ -1,140 +1,184 @@
 import Link from "next/link";
 import { infoCategories, infoArticles } from "@/data/info";
 import { academies } from "@/data/academies";
+import { regions } from "@/data/regions";
+import { medicineBallBoard } from "@/data/records";
+import { communityLines } from "@/data/practical";
 import AcademyCard from "@/components/AcademyCard";
+import ScheduleBoard from "@/components/ScheduleBoard";
+import ScheduleTimeline from "@/components/ScheduleTimeline";
+import RecordBoard from "@/components/RecordBoard";
+import RuleSheet from "@/components/RuleSheet";
+import Photo from "@/components/Photo";
 
 export default function Home() {
-  const stats = [
-    { value: String(infoArticles.length), unit: "개 문서", label: "정리된 정보 영역" },
-    { value: String(academies.length), unit: "곳", label: "등록된 학원" },
-    { value: "0원", unit: "", label: "학생·학부모 이용료" },
-  ];
+  const countOf = (slug: string) => infoArticles.filter((a) => a.categorySlug === slug).length;
+  const updated = [...infoArticles].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]?.updatedAt.replaceAll("-", ".");
 
   return (
     <>
-      {/* HERO */}
-      <section className="bg-ink text-paper">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-signal">Record Board for 체대입시</p>
-          <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.15] tracking-tight sm:text-6xl">
-            흩어진 체대입시 정보를,
-            <br />
-            하나의 기록판으로.
+      {/* 첫 화면: 트랙 사진 풀블리드, 글은 사진 아래쪽 왼편 */}
+      <section className="relative isolate h-[min(78vh,640px)] min-h-[440px] overflow-hidden bg-[#2a1210]">
+        <Photo name="lanes" priority position="50% 60%" className="absolute inset-0 -z-10" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0b0c0e] via-[#0b0c0e]/55 to-[#0b0c0e]/10" />
+        <div className="mx-auto flex h-full max-w-6xl flex-col justify-end px-4 pb-8 sm:px-8 sm:pb-12">
+          <p className="text-sm font-semibold text-hi/90">2027학년도 체대입시 · {updated} 정리</p>
+          <h1 className="mt-3 max-w-[15ch] font-display text-[34px] font-black leading-[1.18] tracking-tight text-white sm:text-[52px]">
+            실기 기준표부터 펴놓고 시작하자
           </h1>
-          <p className="mt-6 max-w-xl text-base text-paper/70 sm:text-lg">
-            실기 기준, 대학별 입시요강, 일정까지 매번 다시 검색하지 않아도 되게 정리했습니다.
-            그리고 지금 준비를 시작할 수 있는 학원까지 바로 연결합니다.
+          <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#e4e7eb] sm:text-base">
+            100m는 스탠딩스타트 1회, 메디신볼은 남 3kg 여 2kg. 요강마다 흩어진 규정을 한 장으로 옮겨 놨어요.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              href="/info"
-              className="bg-signal px-6 py-3 font-mono text-sm font-bold uppercase tracking-widest text-ink transition hover:opacity-90"
-            >
-              정보 보러가기
+          <div className="mt-6 flex flex-wrap gap-2">
+            <Link href="#sheet" className="press inline-flex min-h-12 items-center rounded-full bg-signal px-6 text-[15px] font-bold text-on-signal">
+              종목별 기준표
             </Link>
             <Link
               href="/academies"
-              className="border border-paper/30 px-6 py-3 font-mono text-sm font-bold uppercase tracking-widest text-paper transition hover:border-signal hover:text-signal"
+              className="press inline-flex min-h-12 items-center rounded-full bg-black/45 px-6 text-[15px] font-semibold text-white ring-1 ring-white/30 hover:bg-black/60"
             >
-              학원 찾기
+              우리 동네 학원
             </Link>
-          </div>
-        </div>
-
-        <div className="border-t border-paper/10">
-          <div className="mx-auto grid max-w-6xl grid-cols-3 divide-x divide-paper/10 px-5 sm:px-8">
-            {stats.map((s) => (
-              <div key={s.label} className="py-8">
-                <p className="font-mono text-3xl font-bold text-signal sm:text-4xl">
-                  {s.value}
-                  <span className="ml-1 text-sm text-paper/50">{s.unit}</span>
-                </p>
-                <p className="mt-1 text-xs text-paper/60 sm:text-sm">{s.label}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* WHY */}
-      <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink/40">Why 체대입시</p>
-        <h2 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
-          정보는 널려 있는데, 정작 한눈에 정리된 곳은 없었습니다.
-        </h2>
-        <div className="mt-10 grid gap-px bg-line sm:grid-cols-3">
-          {[
-            { n: "01", t: "정보 정리", d: "블로그·카페·학원 상담마다 다른 이야기 대신, 종목별·대학별 기준을 한 곳에 정리합니다." },
-            { n: "02", t: "학원 연결", d: "지역과 준비 종목에 맞는 학원을 찾아 전화·상담으로 바로 이어줍니다." },
-            { n: "03", t: "지속 업데이트", d: "입시요강과 일정이 바뀔 때마다 갱신 일자를 남겨 최신 상태를 확인할 수 있게 합니다." },
-          ].map((item) => (
-            <div key={item.n} className="bg-paper p-8">
-              <span className="font-mono text-xs text-signal-ink">{item.n}</span>
-              <h3 className="mt-3 text-lg font-black">{item.t}</h3>
-              <p className="mt-2 text-sm text-ink/70">{item.d}</p>
+      <ScheduleBoard />
+
+      {/* 종목별 시행 규정 기록지: 이 사이트의 주인공 */}
+      <section id="sheet" className="scroll-mt-20 mx-auto max-w-6xl px-4 pt-12 sm:px-8 md:pt-20">
+        <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-3">
+          <h2 className="font-display text-[26px] font-black leading-tight tracking-tight sm:text-4xl">종목별 시행 규정</h2>
+          <p className="max-w-md text-[15px] text-body">
+            한국체육대학교가 공개한 시행 규정을 기준으로 옮겼어요. 레인 수, 시도 횟수, 파울 판정은 학교마다 조금씩 달라요.
+          </p>
+        </div>
+        <div className="mt-6">
+          <RuleSheet />
+        </div>
+      </section>
+
+      <div className="mt-14 h-40 overflow-hidden sm:h-56 md:mt-20">
+        <Photo name="sprint" sizes="100vw" position="50% 45%" />
+      </div>
+
+      {/* 메디신볼 만점 기준: 사진 크게 + 숫자 표 */}
+      <section className="mx-auto mt-16 max-w-6xl px-4 sm:px-8 md:mt-24">
+        <div className="grid grid-cols-1 overflow-hidden rounded-xl border border-line bg-surface md:grid-cols-[1.05fr_1fr]">
+          <div className="relative min-h-[220px] md:min-h-full">
+            <Photo name="coach" sizes="(min-width: 768px) 50vw, 100vw" position="50% 40%" className="absolute inset-0" />
+          </div>
+          <div className="p-5 sm:p-8">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-[28px]">메디신볼, 학교마다 만점 거리가 달라요</h2>
+            <p className="mt-2 text-sm text-lo">단위 m · 입시 컨설팅 자료 기준 참고값 · 매년 바뀔 수 있음</p>
+            <div className="mt-5">
+              <RecordBoard board={medicineBallBoard} />
             </div>
+            <p className="mt-4 text-sm text-body">숭실대는 앉아서 던지기, 인천대는 더 가벼운 공을 써요.</p>
+            <Link href={`/info/${medicineBallBoard.sourceSlug}`} className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-signal hover:underline">
+              던지는 자세와 파울 기준 읽기
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 일정: 스톱워치 사진 띠 + 달별 칸 */}
+      <section id="schedule" className="scroll-mt-20 mt-16 md:mt-24">
+        <div className="relative isolate overflow-hidden bg-black">
+          <Photo name="stopwatch" sizes="100vw" position="50% 50%" className="absolute inset-0 -z-10 opacity-60" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-transparent" />
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
+            <h2 className="max-w-md font-display text-[26px] font-black leading-tight tracking-tight text-white sm:text-4xl">
+              수도권 실기고사는 10월에 몰려요
+            </h2>
+            <p className="mt-3 max-w-md text-[15px] text-[#d8dce1]">
+              가천대·용인대부터 서울여대까지. 11월엔 한체대와 수능이 겹쳐서 실기랑 공부를 같이 끌고 가야 해요.
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-8">
+          <ScheduleTimeline columns />
+          <p className="mt-6 text-xs text-lo">입시 컨설팅 자료로 정리한 날짜라 확정본과 다를 수 있어요. 지원 전에 학교 입학처 공지로 한 번 더.</p>
+        </div>
+      </section>
+
+      {/* 커뮤니티에서 실제로 오가는 말 */}
+      <section className="mx-auto mt-16 max-w-6xl px-4 sm:px-8 md:mt-24">
+        <h2 className="text-xl font-bold text-hi sm:text-2xl">갤러리랑 학부모 카페에서 자주 보는 말</h2>
+        <ul className="mt-6 grid grid-cols-1 gap-x-10 md:grid-cols-[1.4fr_1fr]">
+          {communityLines.map((c, i) => (
+            <li key={c.slug} className={i === 0 ? "md:row-span-2" : ""}>
+              <Link href={`/info/${c.slug}`} className="group block border-t border-line py-5">
+                <q className={`block font-display font-black leading-snug text-hi group-hover:text-signal ${i === 0 ? "text-2xl sm:text-[32px]" : "text-lg"}`}>
+                  {c.quote}
+                </q>
+                <span className="mt-2 block text-sm text-lo">{c.from}</span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
-      {/* INFO PREVIEW */}
-      <section className="border-t border-line bg-paper-dim">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink/40">Information</p>
-              <h2 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">정보실</h2>
-            </div>
-            <Link href="/info" className="font-mono text-xs uppercase tracking-widest text-signal-ink hover:underline">
-              전체보기 →
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {infoCategories.map((c) => {
-              const count = infoArticles.filter((a) => a.categorySlug === c.slug).length;
-              return (
-                <Link key={c.slug} href={`/info#${c.slug}`} className="group bg-paper p-6 transition hover:bg-ink">
-                  <span className="font-mono text-xs text-ink/40 group-hover:text-signal">{c.index}</span>
-                  <h3 className="mt-3 font-black group-hover:text-paper">{c.title}</h3>
-                  <p className="mt-2 text-xs text-ink/60 group-hover:text-paper/60">{c.description}</p>
-                  <p className="mt-4 font-mono text-[11px] text-ink/40 group-hover:text-signal">문서 {count}건</p>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ACADEMY PREVIEW */}
-      <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
-        <div className="flex items-end justify-between gap-4">
+      {/* 학원: 지역별 전화번호부 */}
+      <section className="mx-auto mt-16 max-w-6xl px-4 sm:px-8 md:mt-24">
+        <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-[1fr_360px]">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink/40">Academies</p>
-            <h2 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">지역별 학원</h2>
+            <h2 className="font-display text-[26px] font-black leading-tight tracking-tight sm:text-4xl">지역별 체대입시 학원 {academies.length}곳</h2>
+            <p className="mt-3 max-w-xl text-[15px] text-body">
+              학원 채널이랑 지역 정보 사이트에 공개된 내용을 모았어요. 학원이 직접 올린 정보가 아니라서 가기 전에 전화로 한 번 확인해 주세요.
+            </p>
           </div>
-          <Link href="/academies" className="font-mono text-xs uppercase tracking-widest text-signal-ink hover:underline">
-            전체보기 →
+          <div className="hidden h-40 overflow-hidden rounded-lg md:block">
+            <Photo name="schoolRun" sizes="360px" position="50% 55%" />
+          </div>
+        </div>
+
+        <div className="mt-8 space-y-8">
+          {regions.map((r) => {
+            const list = academies.filter((a) => a.regionSlug === r.slug);
+            if (list.length === 0) return null;
+            return (
+              <div key={r.slug}>
+                <p className="flex items-baseline justify-between border-b-2 border-hi/80 pb-1.5">
+                  <Link href={`/academies?region=${r.slug}`} className="text-lg font-bold text-hi hover:text-signal">
+                    {r.name}
+                  </Link>
+                  <span className="num text-xs text-lo">{list.length}곳</span>
+                </p>
+                <ul className="divide-y divide-line">
+                  {list.map((a) => (
+                    <li key={a.slug}>
+                      <AcademyCard academy={a} showRegion={false} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+
+        <p className="mt-8 border-t border-line pt-5 text-[15px] text-body">
+          목록에 없는 학원이거나 번호가 바뀌었으면{" "}
+          <Link href="/contact?type=register" className="font-semibold text-signal underline underline-offset-4">
+            알려주세요
           </Link>
-        </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {academies.slice(0, 3).map((a, i) => (
-            <AcademyCard key={a.slug} academy={a} index={i} />
-          ))}
-        </div>
+          . 확인하고 고쳐 둘게요.
+        </p>
       </section>
 
-      {/* CTA */}
-      <section className="bg-ink text-paper">
-        <div className="mx-auto max-w-6xl px-5 py-20 text-center sm:px-8">
-          <h2 className="text-2xl font-black tracking-tight sm:text-3xl">우리 학원을 등록하고 싶다면</h2>
-          <p className="mt-3 text-paper/70">체대입시생에게 직접 노출됩니다. 문의 남겨주시면 등록을 도와드립니다.</p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-block bg-signal px-8 py-3 font-mono text-sm font-bold uppercase tracking-widest text-ink transition hover:opacity-90"
-          >
-            학원 등록 문의
-          </Link>
-        </div>
+      {/* 정보실 목차: 짧은 텍스트 목록 */}
+      <section className="mx-auto mb-16 mt-16 max-w-6xl px-4 sm:px-8 md:mb-24 md:mt-20">
+        <h2 className="text-xl font-bold text-hi">정보실에 더 있어요</h2>
+        <ul className="mt-4 grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+          {infoCategories.map((c) => (
+            <li key={c.slug} className="border-b border-line">
+              <Link href={`/info#${c.slug}`} className="flex min-h-14 items-center justify-between gap-3 py-3 pr-4 text-[15px] text-hi hover:text-signal">
+                {c.title}
+                <span className="num text-sm text-lo">{countOf(c.slug)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHead from "@/components/PageHead";
 
 export const metadata: Metadata = {
   title: "개인정보처리방침 | 체대입시",
@@ -41,23 +42,25 @@ const SECTIONS = [
 
 export default function PrivacyPage() {
   return (
-    <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8">
-      <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink/40">Privacy</p>
-      <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">개인정보처리방침</h1>
-      <p className="mt-3 text-sm text-ink/60">시행일: 2026-08-24</p>
+    <>
+      <PageHead title="개인정보처리방침">
+        <span className="text-sm text-lo">시행일 2026년 8월 24일</span>
+      </PageHead>
 
-      <div className="mt-10 space-y-8 border-t border-line pt-10">
-        {SECTIONS.map((s) => (
-          <section key={s.title}>
-            <h2 className="font-bold">{s.title}</h2>
-            <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-ink/80">{s.body}</p>
-          </section>
-        ))}
+      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-8 sm:py-14">
+        <div className="divide-y divide-line border-y border-line">
+          {SECTIONS.map((s) => (
+            <section key={s.title} className="py-6">
+              <h2 className="text-base font-bold">{s.title}</h2>
+              <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed text-body">{s.body}</p>
+            </section>
+          ))}
+        </div>
+
+        <p className="mt-10 border-t border-line pt-6 text-xs text-lo">
+          ※ 본 문서는 법률 자문이 아니며, 실제 게시 전 관련 법률 전문가의 검토를 권장합니다.
+        </p>
       </div>
-
-      <p className="mt-12 border-t border-line pt-6 font-mono text-[11px] text-ink/40">
-        ※ 본 문서는 법률 자문이 아니며, 실제 게시 전 관련 법률 전문가의 검토를 권장합니다.
-      </p>
-    </div>
+    </>
   );
 }

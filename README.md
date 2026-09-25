@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 체대입시 실기 기록판
 
-## Getting Started
+체대입시 실기 기준·입시요강·일정을 정리한 정보실과 지역별 체대입시 학원 디렉터리(Next.js App Router, 정적 생성).
 
-First, run the development server:
+## 구조
+- `data/info.ts` 정보실 문서, `data/academies.ts` 학원 목록, `data/regions.ts` 지역
+- `data/schedule.ts` 일정 문서(2027-susi-schedule)의 날짜를 표로 옮긴 것. 날짜를 고치면 info.ts 원문도 같이 고친다
+- `data/records.ts` 메디신볼 문서의 대학별 만점 기준을 표로 옮긴 것
+- 모바일은 하단 탭(홈·정보실·학원찾기·문의), 데스크톱은 상단 메뉴
 
+## 환경변수
+- `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`: 문의 폼 Web3Forms 공개 키. 없으면 폼이 "온라인 접수 준비 중" 상태로 이메일 보내기 대안을 보여준다.
+
+## 명령
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build && npm run start
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
