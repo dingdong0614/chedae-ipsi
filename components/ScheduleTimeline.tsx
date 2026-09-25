@@ -17,9 +17,9 @@ function Row({ e, today }: { e: ScheduleEvent; today: string | null }) {
       </span>
       <span className={`min-w-0 flex-1 text-[15px] leading-snug ${past ? "text-lo" : e.kind === "exam" ? "font-bold text-hi" : "text-hi"}`}>
         {e.label}
-        {showKind && <span className="ml-1.5 text-xs text-lo">{scheduleKindLabel[e.kind]}</span>}
+        {showKind && <span className="ml-1.5 text-[13px] text-lo">{scheduleKindLabel[e.kind]}</span>}
       </span>
-      <span className="num w-14 shrink-0 text-right text-xs font-bold">
+      <span className="num w-14 shrink-0 text-right text-[13px] font-bold">
         {today === null ? (
           <span className="skel inline-block h-4 w-10 align-middle" />
         ) : past ? (
@@ -52,7 +52,7 @@ export default function ScheduleTimeline({ columns = false }: { columns?: boolea
         <div key={k}>
           <p className="flex items-baseline justify-between border-b-2 border-hi/80 pb-1.5">
             <span className="text-lg font-bold text-hi">{title(k)}</span>
-            <span className="num text-xs text-lo">{events.length}건</span>
+            <span className="num text-[13px] text-lo">{events.length}건</span>
           </p>
           <ul className="divide-y divide-line">
             {events.map((e) => (

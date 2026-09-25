@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
-import "@fontsource/noto-serif-kr/900.css";
-import "@fontsource-variable/jetbrains-mono";
+import "./fonts/wanted/wanted-sans.css";
 import Header from "@/components/Header";
 import TabBar from "@/components/TabBar";
 import Footer from "@/components/Footer";

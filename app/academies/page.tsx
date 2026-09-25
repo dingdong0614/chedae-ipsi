@@ -17,7 +17,7 @@ export default function AcademiesPage() {
       </PageHead>
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-8 md:py-12">
         <AcademyDirectory academies={academies} regions={regions} />
-        <p className="mt-10 text-xs leading-relaxed text-lo">
+        <p className="mt-10 text-[13px] leading-relaxed text-lo">
           온라인에 공개된 정보를 조사해 정리한 목록입니다. 학원이 직접 등록한 정보가 아니므로 상담 전 전화로 최신 정보를 확인해주세요.
         </p>
       </div>

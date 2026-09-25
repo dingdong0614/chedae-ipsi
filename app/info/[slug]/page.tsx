@@ -57,9 +57,9 @@ export default async function InfoArticlePage(props: PageProps<"/info/[slug]">) 
               <SampleBadge />
             </div>
           )}
-          <h1 className="mt-16 font-display text-[28px] font-black leading-[1.25] tracking-tight text-white sm:mt-24 sm:text-[40px]">{article.title}</h1>
+          <h1 className="mt-16 text-[28px] font-bold leading-[1.2] tracking-[-0.03em] text-white sm:mt-24 sm:text-[40px]">{article.title}</h1>
           <p className="mt-3 text-[15px] text-[#e4e7eb]">{article.summary}</p>
-          <p className="num mt-4 text-xs text-[#c3c8cf]">{article.updatedAt.replaceAll("-", ".")} 고침</p>
+          <p className="num mt-4 text-[13px] text-[#c3c8cf]">{article.updatedAt.replaceAll("-", ".")} 고침</p>
         </div>
       </header>
 
@@ -95,7 +95,7 @@ export default async function InfoArticlePage(props: PageProps<"/info/[slug]">) 
             className="lift press mt-8 flex items-center gap-4 rounded-[var(--radius)] border border-line-strong bg-surface p-5"
           >
             <span className="min-w-0 flex-1">
-              <span className="text-xs text-lo">같은 분류 다음 문서</span>
+              <span className="text-[13px] text-lo">같은 분류 다음 문서</span>
               <span className="mt-1 block font-bold text-hi">{next.title}</span>
             </span>
             <IconChevron className="h-5 w-5 shrink-0 text-signal" />

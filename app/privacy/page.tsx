@@ -57,7 +57,7 @@ export default function PrivacyPage() {
           ))}
         </div>
 
-        <p className="mt-10 border-t border-line pt-6 text-xs text-lo">
+        <p className="mt-10 border-t border-line pt-6 text-[13px] text-lo">
           ※ 본 문서는 법률 자문이 아니며, 실제 게시 전 관련 법률 전문가의 검토를 권장합니다.
         </p>
       </div>

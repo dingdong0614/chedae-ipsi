@@ -18,7 +18,7 @@ export default function PageHead({
     return (
       <div className="border-b border-line">
         <div className="mx-auto max-w-6xl px-4 pb-8 pt-10 sm:px-8 sm:pb-10 sm:pt-14">
-          <h1 className="font-display text-[30px] font-black tracking-tight sm:text-5xl">{title}</h1>
+          <h1 className="text-[30px] font-bold tracking-[-0.03em] sm:text-5xl">{title}</h1>
           {children && <div className="mt-3 max-w-2xl text-[15px] text-body sm:text-base">{children}</div>}
         </div>
       </div>
@@ -29,7 +29,7 @@ export default function PageHead({
       <Photo name={photo} priority position={position} className="absolute inset-0 -z-10" />
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0b0c0e] via-[#0b0c0e]/70 to-[#0b0c0e]/25" />
       <div className="mx-auto flex min-h-[220px] max-w-6xl flex-col justify-end px-4 pb-7 pt-16 sm:min-h-[300px] sm:px-8 sm:pb-10">
-        <h1 className="font-display text-[32px] font-black tracking-tight text-white sm:text-5xl">{title}</h1>
+        <h1 className="text-[32px] font-bold tracking-[-0.03em] text-white sm:text-5xl">{title}</h1>
         {children && <div className="mt-3 max-w-2xl text-[15px] text-[#e4e7eb] sm:text-base">{children}</div>}
       </div>
     </div>

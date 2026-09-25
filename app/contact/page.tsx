@@ -53,7 +53,7 @@ export default function ContactPage() {
               <dd className="mt-1 text-lo">목록에 없거나 번호, 주소가 바뀐 학원은 학원 이름과 함께 알려 주세요.</dd>
             </div>
           </dl>
-          <p className="pt-4 text-xs leading-relaxed text-lo">
+          <p className="pt-4 text-[13px] leading-relaxed text-lo">
             보내주신 정보는 문의 응대에만 쓰고, 자세한 내용은{" "}
             <Link href="/privacy" className="font-semibold text-body underline underline-offset-2 hover:text-hi">
               개인정보처리방침

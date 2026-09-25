@@ -16,7 +16,7 @@ export default function Header() {
               <path d="M4 18h16M7 14V9M12 14V6M17 14v-3" />
             </svg>
           </span>
-          <span className="text-[17px] font-extrabold tracking-tight text-hi">체대입시</span>
+          <span className="text-[17px] font-bold tracking-[-0.03em] text-hi">체대입시</span>
         </Link>
 
         <nav aria-label="주 메뉴" className="hidden items-center gap-1 md:flex">

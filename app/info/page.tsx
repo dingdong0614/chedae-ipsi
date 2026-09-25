@@ -63,7 +63,7 @@ export default function InfoPage() {
                             {a.sample && <SampleBadge />}
                           </div>
                           <p className="mt-1 line-clamp-2 text-sm text-lo">{a.summary}</p>
-                          <p className="num mt-2 text-xs text-lo">{a.updatedAt.replaceAll("-", ".")} 고침</p>
+                          <p className="num mt-2 text-[13px] text-lo">{a.updatedAt.replaceAll("-", ".")} 고침</p>
                         </div>
                         <IconChevron className="h-5 w-5 shrink-0 text-lo transition-colors group-hover:text-signal" />
                       </Link>

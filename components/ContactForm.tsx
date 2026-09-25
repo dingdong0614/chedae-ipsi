@@ -213,7 +213,7 @@ export default function ContactForm() {
             {errors.message}
           </p>
         ) : (
-          <p id="message-hint" className="mt-1.5 text-xs text-lo">
+          <p id="message-hint" className="mt-1.5 text-[13px] text-lo">
             10자 이상 적어주세요.
           </p>
         )}

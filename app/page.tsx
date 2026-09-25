@@ -23,7 +23,7 @@ export default function Home() {
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0b0c0e] via-[#0b0c0e]/55 to-[#0b0c0e]/10" />
         <div className="mx-auto flex h-full max-w-6xl flex-col justify-end px-4 pb-8 sm:px-8 sm:pb-12">
           <p className="text-sm font-semibold text-hi/90">2027학년도 체대입시 · {updated} 정리</p>
-          <h1 className="mt-3 max-w-[15ch] font-display text-[34px] font-black leading-[1.18] tracking-tight text-white sm:text-[52px]">
+          <h1 className="mt-3 max-w-[15ch] text-[34px] font-bold leading-[1.2] tracking-[-0.03em] text-white sm:text-[52px]">
             실기 기준표부터 펴놓고 시작하자
           </h1>
           <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#e4e7eb] sm:text-base">
@@ -48,7 +48,7 @@ export default function Home() {
       {/* 종목별 시행 규정 기록지: 이 사이트의 주인공 */}
       <section id="sheet" className="scroll-mt-20 mx-auto max-w-6xl px-4 pt-12 sm:px-8 md:pt-20">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-3">
-          <h2 className="font-display text-[26px] font-black leading-tight tracking-tight sm:text-4xl">종목별 시행 규정</h2>
+          <h2 className="text-[26px] font-bold leading-tight tracking-[-0.03em] sm:text-4xl">종목별 시행 규정</h2>
           <p className="max-w-md text-[15px] text-body">
             한국체육대학교가 공개한 시행 규정을 기준으로 옮겼어요. 레인 수, 시도 횟수, 파울 판정은 학교마다 조금씩 달라요.
           </p>
@@ -69,7 +69,7 @@ export default function Home() {
             <Photo name="coach" sizes="(min-width: 768px) 50vw, 100vw" position="50% 40%" className="absolute inset-0" />
           </div>
           <div className="p-5 sm:p-8">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-[28px]">메디신볼, 학교마다 만점 거리가 달라요</h2>
+            <h2 className="text-2xl font-bold tracking-[-0.03em] sm:text-[28px]">메디신볼, 학교마다 만점 거리가 달라요</h2>
             <p className="mt-2 text-sm text-lo">단위 m · 입시 컨설팅 자료 기준 참고값 · 매년 바뀔 수 있음</p>
             <div className="mt-5">
               <RecordBoard board={medicineBallBoard} />
@@ -88,7 +88,7 @@ export default function Home() {
           <Photo name="stopwatch" sizes="100vw" position="50% 50%" className="absolute inset-0 -z-10 opacity-60" />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-transparent" />
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
-            <h2 className="max-w-md font-display text-[26px] font-black leading-tight tracking-tight text-white sm:text-4xl">
+            <h2 className="max-w-md text-[26px] font-bold leading-tight tracking-[-0.03em] text-white sm:text-4xl">
               수도권 실기고사는 10월에 몰려요
             </h2>
             <p className="mt-3 max-w-md text-[15px] text-[#d8dce1]">
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-8">
           <ScheduleTimeline columns />
-          <p className="mt-6 text-xs text-lo">입시 컨설팅 자료로 정리한 날짜라 확정본과 다를 수 있어요. 지원 전에 학교 입학처 공지로 한 번 더.</p>
+          <p className="mt-6 text-[13px] text-lo">입시 컨설팅 자료로 정리한 날짜라 확정본과 다를 수 있어요. 지원 전에 학교 입학처 공지로 한 번 더.</p>
         </div>
       </section>
 
@@ -109,7 +109,7 @@ export default function Home() {
           {communityLines.map((c, i) => (
             <li key={c.slug} className={i === 0 ? "md:row-span-2" : ""}>
               <Link href={`/info/${c.slug}`} className="group block border-t border-line py-5">
-                <q className={`block font-display font-black leading-snug text-hi group-hover:text-signal ${i === 0 ? "text-2xl sm:text-[32px]" : "text-lg"}`}>
+                <q className={`block font-bold leading-snug text-hi group-hover:text-signal ${i === 0 ? "text-2xl sm:text-[32px]" : "text-lg"}`}>
                   {c.quote}
                 </q>
                 <span className="mt-2 block text-sm text-lo">{c.from}</span>
@@ -123,7 +123,7 @@ export default function Home() {
       <section className="mx-auto mt-16 max-w-6xl px-4 sm:px-8 md:mt-24">
         <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-[1fr_360px]">
           <div>
-            <h2 className="font-display text-[26px] font-black leading-tight tracking-tight sm:text-4xl">지역별 체대입시 학원 {academies.length}곳</h2>
+            <h2 className="text-[26px] font-bold leading-tight tracking-[-0.03em] sm:text-4xl">지역별 체대입시 학원 {academies.length}곳</h2>
             <p className="mt-3 max-w-xl text-[15px] text-body">
               학원 채널이랑 지역 정보 사이트에 공개된 내용을 모았어요. 학원이 직접 올린 정보가 아니라서 가기 전에 전화로 한 번 확인해 주세요.
             </p>
@@ -143,7 +143,7 @@ export default function Home() {
                   <Link href={`/academies?region=${r.slug}`} className="text-lg font-bold text-hi hover:text-signal">
                     {r.name}
                   </Link>
-                  <span className="num text-xs text-lo">{list.length}곳</span>
+                  <span className="num text-[13px] text-lo">{list.length}곳</span>
                 </p>
                 <ul className="divide-y divide-line">
                   {list.map((a) => (

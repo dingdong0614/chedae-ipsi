@@ -42,7 +42,7 @@ export default async function AcademyDetailPage(props: PageProps<"/academies/[sl
             <span className="text-sm font-semibold text-signal">{region?.name}</span>
             {academy.sample && <SampleBadge />}
           </div>
-          <h1 className="mt-3 font-display text-[30px] font-black leading-tight tracking-tight sm:text-5xl">{academy.name}</h1>
+          <h1 className="mt-3 text-[30px] font-bold leading-tight tracking-[-0.03em] sm:text-5xl">{academy.name}</h1>
           <p className="mt-3 max-w-xl text-[15px] text-body sm:text-base">{academy.intro}</p>
         </div>
       </header>
@@ -58,12 +58,12 @@ export default async function AcademyDetailPage(props: PageProps<"/academies/[sl
               <span className="flex items-center gap-1.5 text-[15px] font-bold">
                 <IconPhone className="h-5 w-5" /> 전화하기
               </span>
-              <span className="num text-xs opacity-80">{academy.phone}</span>
+              <span className="num text-[13px] opacity-80">{academy.phone}</span>
             </a>
           ) : (
             <div className="flex min-h-14 flex-col items-center justify-center rounded-2xl border border-dashed border-line-strong px-3 py-2 text-center">
               <span className="text-[15px] font-bold text-body">전화번호 확인 중</span>
-              <span className="text-xs text-lo">문의로 연결해 드려요</span>
+              <span className="text-[13px] text-lo">문의로 연결해 드려요</span>
             </div>
           )}
           <Link
@@ -93,7 +93,7 @@ export default async function AcademyDetailPage(props: PageProps<"/academies/[sl
           </div>
         </dl>
 
-        <p className="mt-6 text-xs leading-relaxed text-lo">
+        <p className="mt-6 text-[13px] leading-relaxed text-lo">
           온라인에 공개된 정보를 조사해 정리했으며, 학원이 직접 제출한 정보가 아닙니다. 상담 전 전화로 최신 정보를 확인해주세요.
         </p>
 

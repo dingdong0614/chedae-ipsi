@@ -83,7 +83,7 @@ export default function AcademyDirectory({ academies, regions }: { academies: Ac
               }`}
             >
               {c.name}
-              <span className={`num text-xs ${on ? "text-signal" : "text-lo"}`}>{c.count}</span>
+              <span className={`num text-[13px] ${on ? "text-signal" : "text-lo"}`}>{c.count}</span>
             </button>
           );
         })}

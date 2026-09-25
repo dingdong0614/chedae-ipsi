@@ -25,7 +25,7 @@ export default function RecordBoard({ board }: { board: Board }) {
             <th scope="row" className="py-2.5 pr-3 text-[15px] font-semibold text-hi">
               {r.school}
             </th>
-            <td className={`num py-2.5 pr-3 text-right text-[17px] ${r.male === maxM ? "font-bold text-signal" : "text-hi"}`}>
+            <td className={`num py-2.5 pr-3 text-right text-[17px] font-bold ${r.male === maxM ? "text-signal" : "text-hi"}`}>
               {r.male.toFixed(1)}
             </td>
             <td className="hidden w-1/3 py-2.5 pr-3 sm:table-cell" aria-hidden>
@@ -36,7 +36,7 @@ export default function RecordBoard({ board }: { board: Board }) {
                 )}
               </span>
             </td>
-            <td className={`num py-2.5 text-right text-[17px] ${r.female === maxF ? "font-bold text-signal" : "text-hi"}`}>
+            <td className={`num py-2.5 text-right text-[17px] font-bold ${r.female === maxF ? "text-signal" : "text-hi"}`}>
               {r.female?.toFixed(1) ?? "-"}
             </td>
           </tr>

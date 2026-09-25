@@ -29,7 +29,7 @@ export default function ScheduleBoard() {
           ) : (
             <span className="num text-2xl font-bold text-signal">{dSuneung > 0 ? `D-${dSuneung}` : dSuneung === 0 ? "D-DAY" : "끝"}</span>
           )}
-          <span className="num text-xs text-lo">11.19 목</span>
+          <span className="num text-[13px] text-lo">11.19 목</span>
         </div>
         <div className={cell}>
           <span className="text-sm text-lo">다음 실기</span>
@@ -39,7 +39,7 @@ export default function ScheduleBoard() {
             <span className="text-[15px] font-semibold text-hi">
               {nextPractical.label}
               <span className="num ml-2 text-sm font-normal text-body">{fmtRange(nextPractical.start, nextPractical.end)}</span>
-              <span className="num ml-2 rounded bg-signal px-1.5 py-0.5 text-xs font-bold text-on-signal">
+              <span className="num ml-2 rounded bg-signal px-1.5 py-0.5 text-[13px] font-bold text-on-signal">
                 {dNext! > 0 ? `D-${dNext}` : "진행 중"}
               </span>
             </span>
