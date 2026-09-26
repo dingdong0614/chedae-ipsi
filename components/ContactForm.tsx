@@ -237,7 +237,8 @@ export default function ContactForm() {
             className="mt-0.5 h-5 w-5 shrink-0 accent-[var(--signal)]"
           />
           <span>
-            문의 응대를 위한 개인정보(이름, 연락처, 문의 내용) 수집·이용에 동의합니다.{" "}
+            문의 응대를 위한 개인정보(이름, 연락처, 문의 내용) 수집·이용에 동의합니다. 문의 처리 완료 후 1년간
+            보관하며, 문의 접수·호스팅을 위해 Web3Forms(인도)·Vercel(미국)로 국외 이전됩니다.{" "}
             <Link href="/privacy" className="font-semibold text-hi underline underline-offset-2">
               자세히
             </Link>
